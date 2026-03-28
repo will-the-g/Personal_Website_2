@@ -1,0 +1,47 @@
+# Node modules
+node_modules
+frontend/node_modules
+
+# Build output
+frontend/build
+frontend/.next
+
+# Python
+backend/__pycache__
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.Python
+backend/env
+backend/venv
+backend/.venv
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Git
+.git
+.gitignore
+
+# Logs
+*.log
+logs
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env.local
+.env.development
+
+# Documentation
+README.md
+
+# Docker
+docker-compose.yml
+*.md
