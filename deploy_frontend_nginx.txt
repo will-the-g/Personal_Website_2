@@ -1,0 +1,76 @@
+# Deploy React Frontend with nginx on EC2
+
+1. Build the React app:
+
+    cd frontend
+    yarn build
+
+2. Install nginx (on Ubuntu EC2):
+
+    sudo apt update
+    sudo apt install nginx -y
+
+3. Copy build files to nginx web root:
+
+    sudo cp -r build/* /var/www/html/
+
+4. (Optional but recommended) Backup and update nginx config for single-page app:
+
+    sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
+    sudo tee /etc/nginx/sites-available/default > /dev/null <<EOF
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html index.htm;
+        server_name _;
+        location / {
+            try_files $uri /index.html;
+        }
+    }
+    EOF
+
+5. Restart nginx:
+
+    sudo systemctl restart nginx
+
+
+6. Set up your custom domain (william-gatlin-portfolio.duckdns.org):
+    a. Go to your DuckDNS dashboard and set the A record for william-gatlin-portfolio.duckdns.org to your EC2 public IP address.
+    b. Wait for DNS to propagate (can take a few minutes).
+
+
+7. Update nginx config for your domain:
+
+    # Open the nginx config file in a text editor (nano or vim):
+    sudo nano /etc/nginx/sites-available/default
+
+    # Replace the contents with the following (or update the server_name and root):
+    server {
+        listen 80;
+        listen [::]:80;
+        server_name william-gatlin-portfolio.duckdns.org;
+        root /var/www/html;
+        index index.html index.htm;
+        location / {
+            try_files $uri /index.html;
+        }
+    }
+
+    # Save and exit (in nano: Ctrl+O, Enter, Ctrl+X)
+
+    # Test nginx config for syntax errors:
+    sudo nginx -t
+
+    # Restart nginx to apply changes:
+    sudo systemctl restart nginx
+
+8. (Recommended) Set up HTTPS with Certbot:
+    sudo apt install certbot python3-certbot-nginx -y
+    sudo certbot --nginx -d william-gatlin-portfolio.duckdns.org
+    Follow the prompts to get a free SSL certificate. Certbot will auto-configure nginx for HTTPS.
+
+9. Visit https://william-gatlin-portfolio.duckdns.org in your browser.
+
+# Notes
+If you see a blank page, check browser console and nginx error logs: sudo tail -n 50 /var/log/nginx/error.log

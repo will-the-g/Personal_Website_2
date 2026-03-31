@@ -69,11 +69,12 @@ export const experience = [
     location: "Remote",
     shortDescription: "Allosteric specialized AI Agent System to assist researchers in automating information retrieval, computation, and analysis",
     accomplishments: [
-      "Led the design and development of the world’s first end-to-end AI agent system for allosteric research, extending Biomni with 30+ specialized tools, datasets/databases, prompt engineering, and restructuring for specialization ",
-      "Built a 20+ prompt evaluation comparing new and baseline systems, measuring error rates/handling, answer structuring, data grounding, and more with documented methodology and results. Public Github release and paper in progress (private demo available upon request). ",
-      "Developed scalable system critiquing pipelines to evaluate models and tools across datasets, improving reproducibility, insight generation, and iterative experimentation."
+      "Designed and implemented a modular AI agent system in Python using LangChain/LangGraph, extending BioMni with 30+ domain-specific tools, datasets, and retrieval pipelines to support allosteric research workflows",
+      "Architected agent specialization and tool routing strategies, improving task decomposition, data grounding, and response structure across complex domain-specialized queries",
+      "Built a 15+ prompt evaluation suite comparing baseline vs. enhanced systems, measuring error rates, robustness, data grounding, and output structure; documented methodology and results for reproducibility (GitHub + paper in progress)",
+    
     ],
-    technologies: ["Python", "AWS", "APIs", "Docker"],
+    technologies: ["Python", "Langchain/LangGraph", "APIs", "Docker"],
     highlights: "First Allosteric specialzied AI Agent System to assist researchers"
   },
   {
@@ -84,10 +85,9 @@ export const experience = [
     location: "Remote",
     shortDescription: "Built scalable ML pipelines to predict maize yield from genetics and environment, using Dockerized HPC workflows and open-source Python/R tools.",
     accomplishments: [
-      "Reimplemented a state-of-the-art maize yield prediction pipeline to remove reliance on paid packages, improving accessibility and reproducibility in Python and R",
-      "Converted workflow from SLURM to Pegasus WMS with HTCondor for scalable HPC execution",
-      "Dockerized the workflow and published the container on Docker Hub, enabling portable, consistent execution"
-
+      "Reimplemented maize yield prediction pipeline in Python/R, removing proprietary dependencies to improve reproducibility; containerized with Docker for consistent cross-environment execution",
+      "Migrated workflow from SLURM to Pegasus WMS + HTCondor, enabling DAG-based orchestration, automated retries, and portable execution across HPC environments with improved scheduling efficiency",
+      
     ],
     technologies: ["Python", "R", "Bash", "Docker", "Pegasus WMS", "HTCondor"],
     highlights: ""
